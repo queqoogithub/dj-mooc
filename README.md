@@ -6,5 +6,5 @@
 2. run: python manage.py makemigrations posts
 3. run: python manage.py migrate
 
-### book: https://github.com/wsvincent/djangoforapis_30 (ch.5)
+### book: https://github.com/wsvincent/djangoforapis_30 (ch.5 - ch.7)
 ### credit: https://github.com/wsvincent
