@@ -12,4 +12,4 @@ When run server
 ## Test API Endpoint
 http://localhost:8000/courses
 
-## [Credit and Tuts] (https://www.youtube.com/watch?v=mC0tTmVG0SY)
+### [Credit and Tuts] (https://www.youtube.com/watch?v=mC0tTmVG0SY)
