@@ -6,7 +6,7 @@
 2. python manage.py makemigrations
 3. python manage.py migrate
 ## Run Server
-5. python manage.py runserver 
+4. python manage.py runserver 
 
 ## Test API Endpoint
 http://localhost:8000/courses
