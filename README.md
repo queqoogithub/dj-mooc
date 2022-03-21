@@ -1,7 +1,7 @@
 # dj-mooc
 ### Proof of Concept Django Restful API for E-learning (i.e. MOOC)
 
-## Sync Database
+## Install Package and Sync Database (First Time)
 1. pip install -r requirements.txt
 2. python manage.py makemigrations
 3. python manage.py migrate
