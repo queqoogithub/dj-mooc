@@ -24,13 +24,9 @@ class UserManager(BaseUserManager):
             raise ValueError('You must provide a valid email')
 
         email=self.normalize_email(email)
-
         user=self.model(email=email, name=name, **other_fields)
-
         user.set_password(password)
-
         user.save()
-
         return user
 
 class User(AbstractBaseUser,PermissionsMixin):

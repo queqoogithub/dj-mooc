@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import cloudinary
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,21 +39,23 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-     #third party apps
+    # third party apps
     "rest_framework",
     "djoser" ,
     'corsheaders',
-    # 'cloudinary_storage',
-    # 'cloudinary',
+    'cloudinary_storage',
+    'cloudinary',
 
     # own apps
     'courses',
     'users',
+    'payments',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -138,5 +141,51 @@ STATICFILES_DIRS=[
     BASE_DIR/'static',
 ]
 
+DJOSER={
+    'SERIALIZERS':{
+        'user': 'users.serializers.UserAuthSerializer',
+        'current_user': 'users.serializers.UserAuthSerializer'
+        }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('Token',),
+}
+
+CORS_ALLOWED_ORIGINS = [
+    
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'localhost:3000',
+    '127.0.0.1:3000',
+]
+
 # Auth settings
 AUTH_USER_MODEL='users.User'
+
+STRIPE_APIKEY='sk_test_51JUKq6BW2kmnQhJc4b18XVVzrXjrEkiCaZvNsqW2zTnOHvGwdKWlUEzgMPY0bD3LaOnoaHPSQ9AB98xCK1POZaA600qVuydwi0'
+WEBHOOK_SECRET='whsec_cae052300e3cb4ff51ecb02a8cfdf9a91f065b5011db4d321433e1249cae8735'
+
+# cloudinary settings
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'world-energy-group',
+    'API_KEY': '195318643185637',
+    'API_SECRET': 'BSiPh7GWIzuKs5zPzTVBQF-cLDM'
+}
+
+cloudinary.config( 
+  cloud_name = 'world-energy-group',
+  api_key = '195318643185637',
+  api_secret = 'BSiPh7GWIzuKs5zPzTVBQF-cLDM',
+  secure = False
+)

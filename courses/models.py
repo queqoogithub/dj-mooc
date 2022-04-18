@@ -9,9 +9,8 @@ from .helpers import get_timer
 
 from decimal import Decimal
 
-# from cloudinary_storage.storage import MediaCloudinaryStorage
-# from cloudinary_storage.validators import validate_video
-
+from cloudinary_storage.storage import MediaCloudinaryStorage
+#from cloudinary_storage.validators import validate_video
 from cloudinary.models import CloudinaryField
 
 class Course(models.Model):
@@ -19,16 +18,16 @@ class Course(models.Model):
     description=models.TextField()
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now=True)
-    
     author=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    
     language=models.CharField(max_length=225)
-   
     course_sections=models.ManyToManyField('CourseSection', blank=True)
     comment=models.ManyToManyField('Comment', blank=True)
     course_uuid=models.UUIDField(default=uuid.uuid4, unique=True)
-    image_url=models.ImageField(upload_to='course_images', )
+    image_url=models.ImageField(upload_to='course_images',storage=MediaCloudinaryStorage())
     price=models.DecimalField(max_digits=5, decimal_places=2)
+
+    def __str__(self):
+          return self.title
 
     def get_brief_description(self):
         return self.description[:100]
@@ -52,10 +51,12 @@ class Course(models.Model):
         
         return get_timer(length, type="short")
                 
-
 class CourseSection(models.Model):
     section_title=models.CharField(max_length=225,blank=True,null=True)
     episodes=models.ManyToManyField('Episode',blank=True)
+
+    def __str__(self):
+          return self.section_title
 
     def total_length(self):
         total=Decimal(0.00)
@@ -66,8 +67,11 @@ class CourseSection(models.Model):
 
 class Episode(models.Model):
     title=models.CharField(max_length=225)
-    file=CloudinaryField(resource_type='video', )
+    file=CloudinaryField(resource_type='video', folder='media')
     length=models.DecimalField(max_digits=100,decimal_places=2)
+
+    def __str__(self):
+          return self.title
 
     def get_video_length(self):
         try:
@@ -87,8 +91,6 @@ class Episode(models.Model):
         self.length=self.get_video_length()
         # print(self.length)
         # print(self.file.path)
-        
-        
         return super().save(*args, **kwargs)
 
 class Comment(models.Model):
@@ -100,8 +102,11 @@ class Sector(models.Model):
     name=models.CharField(max_length=225)
     sector_uuid=models.UUIDField(default=uuid.uuid4,unique=True)
     related_courses=models.ManyToManyField(Course,blank=True)
-    sector_image=models.ImageField(upload_to='sector_images', )
+    sector_image=models.ImageField(upload_to='sector_images',storage=MediaCloudinaryStorage())
+
+    def __str__(self):
+          return self.name
 
     # /media/sector_image/what.png
-    def get_image_absolute_url(self):
-      return 'http://localhost:8000'+self.sector_image
+    # def get_image_absolute_url(self):
+    #   return 'http://localhost:8000'+self.sector_image
