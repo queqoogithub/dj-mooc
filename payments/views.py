@@ -68,7 +68,8 @@ class PaymentHandler(APIView):
         intent=PaymentIntent.objects.create(
           payment_intent_id=checkout_session.payment_intent,
           checkout_id=checkout_session.id,
-          user=User.objects.get(id=1)
+          #user=User.objects.get(id=1)
+          user=request.user,
         )
 
         intent.course.add(*cart_course)

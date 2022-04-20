@@ -141,6 +141,9 @@ STATICFILES_DIRS=[
     BASE_DIR/'static',
 ]
 
+# Auth settings
+AUTH_USER_MODEL='users.User'
+
 DJOSER={
     'SERIALIZERS':{
         'user': 'users.serializers.UserAuthSerializer',
@@ -169,9 +172,6 @@ CSRF_TRUSTED_ORIGINS = [
     'localhost:3000',
     '127.0.0.1:3000',
 ]
-
-# Auth settings
-AUTH_USER_MODEL='users.User'
 
 STRIPE_APIKEY='sk_test_51JUKq6BW2kmnQhJc4b18XVVzrXjrEkiCaZvNsqW2zTnOHvGwdKWlUEzgMPY0bD3LaOnoaHPSQ9AB98xCK1POZaA600qVuydwi0'
 WEBHOOK_SECRET='whsec_cae052300e3cb4ff51ecb02a8cfdf9a91f065b5011db4d321433e1249cae8735'
