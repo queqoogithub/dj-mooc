@@ -163,14 +163,14 @@ SIMPLE_JWT = {
 
 CORS_ALLOWED_ORIGINS = [
     
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
+    'https://localhost:3000',
+    'https://127.0.0.1:3000',
 
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'localhost:3000',
-    '127.0.0.1:3000',
+    'https://localhost:3000',
+    'https://127.0.0.1:3000',
 ]
 
 STRIPE_APIKEY='sk_test_51JUKq6BW2kmnQhJc4b18XVVzrXjrEkiCaZvNsqW2zTnOHvGwdKWlUEzgMPY0bD3LaOnoaHPSQ9AB98xCK1POZaA600qVuydwi0'
