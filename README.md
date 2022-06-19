@@ -11,4 +11,4 @@
 ## Test API Endpoint
 http://localhost:8000/courses
 
-### [Credit and Tuts] (https://www.youtube.com/watch?v=mC0tTmVG0SY)
+### [Copy and Tutorial from] (https://www.youtube.com/watch?v=mC0tTmVG0SY)
